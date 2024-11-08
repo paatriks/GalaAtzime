@@ -31,8 +31,35 @@ public class Main {
         }
     }
 
+    static void vertesanasKrit() {
+        int kriterijuSum = 0;
+
+        System.out.println("Ievadi vērtēšanas kritērijus (%): ");
+        for (int i = 0; i < kriteriji.length; i++) {
+            do {
+                System.out.print("Vērtēšanas kritērijs (%): ");
+                kriteriji[i] = sc.nextInt();
+
+                if (kriteriji[i] < 5 || kriteriji[i] > 100) {
+                    System.out.println("Kritērijam jabūt robežās no 5% līdz 100%!");
+                }
+
+            } while (kriteriji[i] < 5 || kriteriji[i] > 100);
+        }
+
+        for (int i = 0; i < kriteriji.length; i++) {
+            kriterijuSum += kriteriji[i];
+        }
+
+        if (kriterijuSum != 100) {
+            System.out.println("Kritēriju summai jābūt 100%");
+            vertesanasKrit();
+        }
+    }
+
 
     public static void main(String[] args) {
         ievaditStudentusUnAtz();
+        vertesanasKrit();
     }
 }
