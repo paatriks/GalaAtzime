@@ -9,6 +9,15 @@ public class Main {
     static double[] galavert;
     static Scanner sc = new Scanner(System.in);
 
+    static void aprekinatVert() {
+        for (int i = 0; i < studenti.length; i++) {
+            for (int j = 0; j < AtzSk; j++) {
+                galavert[i] += atzimes[i][j] * (kriteriji[j] / 100.0);
+            }
+            System.out.println(studenti[i] + " gala atzīme: " + Math.round(galavert[i]));
+        }
+    }
+
     static void ievaditStudentusUnAtz() {
         System.out.print("Cik studenti būs kopumā? ");
         studSk = sc.nextInt();
@@ -61,5 +70,6 @@ public class Main {
     public static void main(String[] args) {
         ievaditStudentusUnAtz();
         vertesanasKrit();
+        aprekinatVert();
     }
 }
