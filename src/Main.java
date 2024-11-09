@@ -19,8 +19,15 @@ public class Main {
     }
 
     static void ievaditStudentusUnAtz() {
-        System.out.print("Cik studenti būs kopumā? ");
-        studSk = sc.nextInt();
+        do {
+            System.out.print("Cik studenti būs kopumā? ");
+            studSk = sc.nextInt();
+
+            if (studSk < 1) {
+                System.out.println("Studentu daudzums nevar būt negatīvā daudzumā!");
+            }
+
+        } while (studSk < 1);
 
         System.out.print("Cik atzīmes būs kopumā? ");
         AtzSk = sc.nextInt();
@@ -65,7 +72,6 @@ public class Main {
             vertesanasKrit();
         }
     }
-
 
     public static void main(String[] args) {
         ievaditStudentusUnAtz();
