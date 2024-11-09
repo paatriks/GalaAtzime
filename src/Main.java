@@ -45,8 +45,14 @@ public class Main {
             System.out.print("Ievadi studenta vārdu: ");
             studenti[i] = sc.next();
             for (int j = 0; j < AtzSk; j++) {
-                System.out.print("Ievadi šī studenta atzīmi: ");
-                atzimes[i][j] = sc.nextInt();
+                do {
+                    System.out.print("Ievadi šī studenta atzīmi: ");
+                    atzimes[i][j] = sc.nextInt();
+
+                    if (atzimes[i][j] < 1 || atzimes[i][j] > 10) {
+                        System.out.println("Atzīme nevar būt mazāka par 1 vai lielāka par 10!");
+                    }
+                } while (atzimes[i][j] < 1 || atzimes[i][j] > 10);
             }
         }
     }
