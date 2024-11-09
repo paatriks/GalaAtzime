@@ -23,14 +23,18 @@ public class Main {
             System.out.print("Cik studenti būs kopumā? ");
             studSk = sc.nextInt();
 
+            System.out.print("Cik atzīmes būs kopumā? ");
+            AtzSk = sc.nextInt();
+
             if (studSk < 1) {
-                System.out.println("Studentu daudzums nevar būt negatīvā daudzumā!");
+                System.out.println("Studentu daudzums nevar būt mazāks par 1!");
             }
 
-        } while (studSk < 1);
+            else if (AtzSk < 1) {
+                System.out.println("Studentam jābūt vismaz vienai atzīmei, lai varētu izlikt gala vērtejumu!");
+            }
 
-        System.out.print("Cik atzīmes būs kopumā? ");
-        AtzSk = sc.nextInt();
+        } while (studSk < 1 || AtzSk < 1);
 
         studenti = new String[studSk];
         atzimes = new int[studSk][AtzSk];
