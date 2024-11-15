@@ -1,5 +1,7 @@
 import java.util.Scanner;
 
+import javax.swing.JOptionPane;
+
 public class Main {
 
     static int studSk, AtzSk;
@@ -14,24 +16,23 @@ public class Main {
             for (int j = 0; j < AtzSk; j++) {
                 galavert[i] += atzimes[i][j] * (kriteriji[j] / 100.0);
             }
-            System.out.println(studenti[i] + " gala atzīme: " + Math.round(galavert[i]));
+            JOptionPane.showMessageDialog(null, studenti[i] + " gala atzīme: " + Math.round(galavert[i]), "Gala atzīme",  JOptionPane.INFORMATION_MESSAGE);
         }
     }
 
     static void ievaditStudentusUnAtz() {
         do {
-            System.out.print("Cik studenti būs kopumā? ");
-            studSk = sc.nextInt();
+            
+            studSk = Integer.parseInt(JOptionPane.showInputDialog(null, "Cik studenti būs kopumā?", "Studentu skaits", JOptionPane.INFORMATION_MESSAGE));
 
-            System.out.print("Cik atzīmes būs kopumā? ");
-            AtzSk = sc.nextInt();
+            AtzSk = Integer.parseInt(JOptionPane.showInputDialog(null, "Cik atzīmes būs kopumā?", "Atzīmju skaits", JOptionPane.INFORMATION_MESSAGE));
 
             if (studSk < 1) {
-                System.out.println("Studentu daudzums nevar būt mazāks par 1!");
+            	JOptionPane.showMessageDialog(null, "Studentu skaits nevar but mazāks par 1", "Error",  JOptionPane.ERROR_MESSAGE);
             }
 
             else if (AtzSk < 1) {
-                System.out.println("Studentam jābūt vismaz vienai atzīmei, lai varētu izlikt gala vērtejumu!");
+            	JOptionPane.showMessageDialog(null, "Studentam jābūt vismaz vienai atzīmei, lai sanāktu gala vērtējums", "Error",  JOptionPane.ERROR_MESSAGE);
             }
 
         } while (studSk < 1 || AtzSk < 1);
@@ -42,15 +43,14 @@ public class Main {
         galavert = new double[studSk];
 
         for (int i = 0; i < studenti.length; i++) {
-            System.out.print("Ievadi studenta vārdu: ");
-            studenti[i] = sc.next();
+            
+            studenti[i] = JOptionPane.showInputDialog(null, "Ievadi " + (i+1) + ". studenta vārdu:", "Studentu vārdi", JOptionPane.INFORMATION_MESSAGE);
             for (int j = 0; j < AtzSk; j++) {
                 do {
-                    System.out.print("Ievadi šī studenta atzīmi: ");
-                    atzimes[i][j] = sc.nextInt();
+                    atzimes[i][j] = Integer.parseInt(JOptionPane.showInputDialog(null, "Ievadi studenta " + (j+1) +  ". atzīmi:", "Studenta atzīme", JOptionPane.INFORMATION_MESSAGE));
 
                     if (atzimes[i][j] < 1 || atzimes[i][j] > 10) {
-                        System.out.println("Atzīme nevar būt mazāka par 1 vai lielāka par 10!");
+                    	JOptionPane.showMessageDialog(null, "Atzīme nevar būt mazāka par 1 vai lielāka par 10", "Error",  JOptionPane.ERROR_MESSAGE);
                     }
                 } while (atzimes[i][j] < 1 || atzimes[i][j] > 10);
             }
@@ -60,14 +60,14 @@ public class Main {
     static void vertesanasKrit() {
         int kriterijuSum = 0;
 
-        System.out.println("Ievadi vērtēšanas kritērijus (%): ");
+       // JOptionPane.showConfirmDialog(null, "Ievadi vertesanas kriterijus", "Vertesanas kriteriji", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
+        
         for (int i = 0; i < kriteriji.length; i++) {
             do {
-                System.out.print("Vērtēšanas kritērijs (%): ");
-                kriteriji[i] = sc.nextInt();
+                kriteriji[i] = Integer.parseInt(JOptionPane.showInputDialog(null, + (i+1) + ". vērtēšanas kritērijs: ", "Vērtēšanas kritēriji", JOptionPane.INFORMATION_MESSAGE));
 
                 if (kriteriji[i] < 5 || kriteriji[i] > 100) {
-                    System.out.println("Kritērijam jabūt robežās no 5% līdz 100%!");
+                	JOptionPane.showMessageDialog(null, "Kritērijam jābūt robežās no 5% līdz 100%", "Error",  JOptionPane.WARNING_MESSAGE);
                 }
 
             } while (kriteriji[i] < 5 || kriteriji[i] > 100);
@@ -78,7 +78,7 @@ public class Main {
         }
 
         if (kriterijuSum != 100) {
-            System.out.println("Kritēriju summai jābūt 100%");
+        	JOptionPane.showMessageDialog(null, "Kritēriju summai jābūt 100%", "Error",  JOptionPane.ERROR_MESSAGE);
             vertesanasKrit();
         }
     }
